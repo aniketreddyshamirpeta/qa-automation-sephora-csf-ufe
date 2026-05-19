@@ -1,6 +1,16 @@
 const { test, expect } = require('@playwright/test');
 
-test('Google Test', async ({ page }) => {
-  await page.goto('https://google.com');
-  await expect(page).toHaveTitle(/Google/);
+test('CSF Storefront Validation', async ({ page }) => {
+
+  await page.goto('https://qa3.sephora.com/creators/thuphamnelson');
+
+  await page.waitForLoadState('networkidle');
+
+  await expect(page).toHaveURL(/creators/);
+
+  await page.screenshot({
+    path: 'csf-homepage.png',
+    fullPage: true
+  });
+
 });
